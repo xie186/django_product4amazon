@@ -1,6 +1,6 @@
 {% extends "./base.html" %}
 {% load static %}
-{% block title %}Unikalon{% endblock %}
+{% block title %}AesGlow{% endblock %}
 {% block content %}
 
 
@@ -55,9 +55,11 @@
       </button>
     </div>
     
-  </section>
+  <!--/section--!>
 
-  <div class="album py-5 bg-light">
+  <!--div class="album py-5 bg-light"--!>
+  <!--section class="py-5 text-center container"--!>
+
     <div class="container">
 
       <!--div class="pb-3 h5">All Books</div--!>
@@ -84,12 +86,52 @@
 
       </div>
     </div>
+    <!--/section-->
 
+    <!--section class="py-5 text-center container"--!>
     <div class="container">
         <h4 style="text-align: center;">Lighting Deal</h4>
-    </div>   
-  </div>
+    </div>
 
+    <div id="CarouselDeal" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#CarouselDeal" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>
+        {% for deal in lightingdeals|slice:"1:" %}
+          <button type="button" data-bs-target="#CarouselDeal" data-bs-slide-to="{{ forloop.counter }}" aria-label="Slide {{ forloop.counter }}"></button>
+        {% endfor %}
+      </div>
+      <div class="carousel-inner">
+        {% for deal  in lightingdeals|slice:"0:1" %}
+            <div class="carousel-item active">
+                <a href="{{ deal.url }}" role="button">
+                    <img src="{{ deal.image_thumbnail.url }}" class="d-block w-100" alt="{{ deal.id }}" />
+                </a>
+            </div>
+        {% empty %}
+            <li>No Lighting Deal yet.</li>
+        {% endfor %}
+
+        {% for deal  in lightingdeals|slice:"1:" %}
+            <div class="carousel-item">
+                 <a href="{{ deal.url }}" role="button">
+                     <img src="{{ deal.image_thumbnail.url }}" class="d-block w-100" alt="{{ deal.id }}" />
+                 </a>
+            </div>
+        {% endfor %}
+
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#CarouselDeal" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#CarouselDeal" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+ 
+  </div>
+  </section>
 
 </main>
 

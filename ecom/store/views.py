@@ -1,13 +1,14 @@
 from django.shortcuts import get_object_or_404, render
 
-from .models import Category, Product, Carousel
+from .models import Category, Product, Carousel, LightingDeal
 from django.views.generic.list import ListView
 
 
 def product_all(request):
     products = Product.products.all()
     carousel = Carousel.objects.all()
-    return render(request, 'store/index.html', {'products': products, 'carousels': carousel})
+    lightingdeal = LightingDeal.objects.all()
+    return render(request, 'store/index.html', {'products': products, 'carousels': carousel, 'lightingdeals': lightingdeal})
 
 #class Index(ListView):
 #    model = Carousel

@@ -32,7 +32,7 @@ class Product(models.Model):
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to='images/', default='images/default.png')
     slug = models.SlugField(max_length=255)
-    price = models.DecimalField(max_digits=4, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     in_stock = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -56,6 +56,14 @@ class Carousel(models.Model):
     author = models.CharField(max_length=256)
     url = models.CharField(max_length=256)
     image = models.ImageField(upload_to = 'carousel/', default = 'carousel/plant.png')
+    image_thumbnail = ImageSpecField(source='image',
+                                     processors=[ResizeToFill(1900, 500)],
+                                     format='JPEG', options={'quality': 60})
+class LightingDeal(models.Model):
+    name  = models.CharField(max_length=256)
+    author = models.CharField(max_length=256)
+    url = models.CharField(max_length=256)
+    image = models.ImageField(upload_to = 'lightingdeal/', default = 'lightingdeal/plant.png')
     image_thumbnail = ImageSpecField(source='image',
                                      processors=[ResizeToFill(1900, 500)],
                                      format='JPEG', options={'quality': 60})

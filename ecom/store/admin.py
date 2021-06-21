@@ -1,8 +1,17 @@
 from django.contrib import admin
 
-from .models import Category, Product, Carousel
+from .models import Category, Product, Carousel,LightingDeal
 
-admin.site.register(Carousel)
+@admin.register(Carousel)
+class CarouselAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    #prepopulated_fields = {'slug': ('name',)}
+
+
+@admin.register(LightingDeal)
+class LightingDealAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    #prepopulated_fields = {'slug': ('name',)}
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
